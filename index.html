@@ -264,6 +264,8 @@
         .mobile-menu.active a:nth-child(3) { transition: all 0.3s ease 0.2s; }
         .mobile-menu.active a:nth-child(4) { transition: all 0.3s ease 0.25s; }
         .mobile-menu.active a:nth-child(5) { transition: all 0.3s ease 0.3s; }
+        .mobile-menu.active a:nth-child(6) { transition: all 0.3s ease 0.35s; }
+        .mobile-menu.active a:nth-child(7) { transition: all 0.3s ease 0.4s; }
 
         .mobile-menu a:hover {
             color: var(--accent);
@@ -573,7 +575,7 @@
             margin: 0 auto;
         }
 
-        .features-wrap, .showcase-wrap, .process-wrap, .tech-wrap, .vision-wrap {
+        .features-wrap, .showcase-wrap, .process-wrap, .tech-wrap, .vision-wrap, .how-ai-works-wrap, .how-it-works-wrap {
             background: #050505;
             width: 100%;
         }
@@ -1471,6 +1473,7 @@
         .stagger-children .reveal:nth-child(2) { transition-delay: 0.1s; }
         .stagger-children .reveal:nth-child(3) { transition-delay: 0.2s; }
         .stagger-children .reveal:nth-child(4) { transition-delay: 0.3s; }
+        .stagger-children .reveal:nth-child(5) { transition-delay: 0.4s; }
 
         /* ── GRAIN OVERLAY ── */
         body::after {
@@ -1485,10 +1488,22 @@
         }
 
         /* ── RESPONSIVE ── */
+        /* ── RESULTS SECTION ── */
+        .results-grid .result-item:hover {
+            border-color: rgba(96, 180, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* ── HOW-AI-WORKS & HOW-IT-WORKS WRAPS ── */
+        .how-ai-works-wrap, .how-it-works-wrap {
+            width: 100%;
+        }
+
         @media (max-width: 1024px) {
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .bento-card.large, .bento-card.medium, .bento-card.wide { grid-column: span 12; }
             .cases-grid { grid-template-columns: 1fr; }
+            .results-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
 
         @media (max-width: 768px) {
@@ -1504,6 +1519,9 @@
                 gap: 2.5rem;
             }
             .process-timeline::before { display: none; }
+            .results-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .results-section { padding: 5rem 1.5rem !important; }
+            .case-card[style*="grid-column"] { grid-column: auto !important; }
             .cta-section { padding: 5rem 1.5rem; }
             .footer-top { flex-direction: column; }
             .footer-links-group { gap: 2rem; }
@@ -1526,10 +1544,10 @@
             NOGO
         </div>
         <ul class="nav-links">
-            <li><a href="#features">Lösningar</a></li>
-            <li><a href="#showcase">Capabilities</a></li>
+            <li><a href="#how-ai-works">Vår AI</a></li>
+            <li><a href="#how-it-works">Så fungerar det</a></li>
             <li><a href="#process">Process</a></li>
-            <li><a href="#cases">Use Cases</a></li>
+            <li><a href="#cases">Användningsområden</a></li>
             <li><a href="#about">Om oss</a></li>
             <li><a href="#contact" class="nav-cta">Boka samtal →</a></li>
         </ul>
@@ -1542,10 +1560,11 @@
 
     <div class="mobile-overlay" id="mobileOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#features" onclick="closeMobile()">Lösningar</a>
-        <a href="#showcase" onclick="closeMobile()">Capabilities</a>
+        <a href="#how-ai-works" onclick="closeMobile()">Vår AI</a>
+        <a href="#how-it-works" onclick="closeMobile()">Så fungerar det</a>
         <a href="#process" onclick="closeMobile()">Process</a>
-        <a href="#cases" onclick="closeMobile()">Use Cases</a>
+        <a href="#cases" onclick="closeMobile()">Användningsområden</a>
+        <a href="#results" onclick="closeMobile()">Resultatet</a>
         <a href="#about" onclick="closeMobile()">Om oss</a>
         <a href="#contact" class="mobile-cta" onclick="closeMobile()">Boka samtal →</a>
         <div class="mobile-contact-info">
@@ -1562,8 +1581,8 @@
         </div>
         <h1>Vi bygger AI som <span class="accent-word">driver</span> hela företag</h1>
         <p class="hero-subtitle">
-            Inte chatbots. Inte copilots. Autonoma AI-agenter som fattar beslut, 
-            utför uppgifter och skalar era operationer — dygnet runt.
+            AI-automatisering som arbetar direkt i era befintliga system.
+            Utan integrationer. Utan ombyggnation. Bara resultat — dygnet runt.
         </p>
         <div class="hero-actions">
             <a href="#contact" class="btn-primary">Boka strategimöte</a>
@@ -1666,6 +1685,63 @@
     </section>
     </div>
 
+    <!-- SÅ FUNGERAR VÅR AI -->
+    <div class="how-ai-works-wrap" style="background: #0a0a0a;">
+    <section id="how-ai-works" class="features" style="border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <div class="section-header">
+            <div class="section-tag">Vår AI</div>
+            <h2 class="section-title">AI som arbetar i era system — utan att förändra dem</h2>
+            <p class="section-subtitle">
+                Vår AI-automatisering effektiviserar manuella arbetsmoment genom att arbeta direkt i användargränssnittet. Lösningen efterliknar hur en mänsklig användare arbetar, men med högre hastighet, precision och tillgänglighet — utan att bygga om era systemmiljöer.
+            </p>
+        </div>
+
+        <div class="features-grid stagger-children">
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                <h3>Hur AI:n förstår systemen</h3>
+                <p>
+                    Tolkar visuella element, systemstatusar och informationsflöden på skärmen. Förstår avvikelser, saknad information och systemkrav.
+                </p>
+                <ul class="feature-list">
+                    <li>Läser skärminnehåll i realtid</li>
+                    <li>Identifierar systemstatusar och fel</li>
+                    <li>Särskilt effektiv i komplexa/äldre system</li>
+                    <li>Fungerar utan API:er</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg></div>
+                <h3>Vad AI:n faktiskt gör</h3>
+                <p>
+                    Utför rätt åtgärd enligt fastställda regler. Hanterar uppgifter konsekvent dygnet runt. Eskalerar vid avvikelser till ansvarig person.
+                </p>
+                <ul class="feature-list">
+                    <li>Agerar enligt fördefinierade regler</li>
+                    <li>Konsekvent drift dygnet runt</li>
+                    <li>Automatisk eskalering vid avvikelser</li>
+                    <li>Inga manuella ingrepp krävs</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <h3>Full kontroll & transparens</h3>
+                <p>
+                    Varje steg loggas. Arbetar enligt tydliga gränser. Avvikelser pausas och eskaleras. Enkelt att justera när processer förändras.
+                </p>
+                <ul class="feature-list">
+                    <li>Fullständig loggning av varje steg</li>
+                    <li>Tydligt definierade gränser</li>
+                    <li>Avvikelser pausas/eskaleras</li>
+                    <li>Enkel justering vid förändring</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    </div>
+
     <!-- SHOWCASE / BENTO -->
     <div class="showcase-wrap">    <section id="showcase" class="showcase">
         <div class="section-header">
@@ -1730,14 +1806,14 @@
     </section>
     </div>
 
-    <!-- PROCESS -->
-    <div class="process-wrap">
-    <section id="process" class="process">
+    <!-- SÅ FUNGERAR DET FÖR ER -->
+    <div class="how-it-works-wrap" style="background: #0a0a0a;">
+    <section id="how-it-works" class="process" style="max-width: 1200px;">
         <div class="section-header">
-            <div class="section-tag">Process</div>
-            <h2 class="section-title">Från idé till autonom drift</h2>
+            <div class="section-tag">Steg för steg</div>
+            <h2 class="section-title">Så fungerar det för er</h2>
             <p class="section-subtitle">
-                En beprövad metod för att implementera AI som faktiskt levererar affärsresultat
+                Från konfiguration till full drift — så arbetar vår AI-automatisering i era system
             </p>
         </div>
 
@@ -1745,29 +1821,72 @@
             <div class="process-step reveal">
                 <span class="step-num">01</span>
                 <div class="step-dot"></div>
-                <h3>Discovery</h3>
-                <p>Vi kartlägger era processer, flaskhalsar och automatiseringsmöjligheter</p>
+                <h3>Anpassas efter era arbetssätt</h3>
+                <p>Tillsammans definierar vi: vad ska AI:n reagera på? Hur hanteras olika utfall? När utförs åtgärder automatiskt? När eskaleras till människa? All logik är fördefinierad och kontrollerad.</p>
             </div>
 
             <div class="process-step reveal">
                 <span class="step-num">02</span>
                 <div class="step-dot"></div>
-                <h3>Design</h3>
-                <p>Regler, verktyg, data och godkännandeflöden designas med full transparens</p>
+                <h3>AI:n tolkar skärmen i realtid</h3>
+                <p>Övervakar system och kan: läsa orderlistor, statusfält och formulär. Identifierar fel och avvikelser. Tolkar systemmeddelanden och varningar. Fungerar även utan API:er.</p>
             </div>
 
             <div class="process-step reveal">
                 <span class="step-num">03</span>
                 <div class="step-dot"></div>
-                <h3>Bygg & Testa</h3>
-                <p>Vi bygger er AI-agent och validerar mot verkliga scenarier med live data</p>
+                <h3>Rätt åtgärd utförs automatiskt</h3>
+                <p>Sorterar och prioriterar order, korrigerar information, flyttar ärenden mellan köer, skickar meddelanden, skapar ärenden och eskalerar vid behov. Alla åtgärder följer era regler.</p>
             </div>
 
             <div class="process-step reveal">
                 <span class="step-num">04</span>
                 <div class="step-dot"></div>
-                <h3>Launch & Iterate</h3>
-                <p>Loggning, feedback och iteration — vi optimerar löpande efter deployment</p>
+                <h3>Full spårbarhet</h3>
+                <p>Varje steg loggas. Automatiseringen arbetar inom tydliga gränser. Avvikelser hanteras säkert. Lösningen justeras enkelt när processer förändras.</p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- PROCESS / ONBOARDING -->
+    <div class="process-wrap">
+    <section id="process" class="process">
+        <div class="section-header">
+            <div class="section-tag">Onboarding</div>
+            <h2 class="section-title">Från kartläggning till produktion</h2>
+            <p class="section-subtitle">
+                Så går vi från era nuvarande processer till en fungerande AI-automatisering
+            </p>
+        </div>
+
+        <div class="process-timeline stagger-children">
+            <div class="process-step reveal">
+                <span class="step-num">01</span>
+                <div class="step-dot"></div>
+                <h3>Processkartläggning</h3>
+                <p>Vi identifierar vilka moment som är manuella, repetitiva och tidskrävande</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">02</span>
+                <div class="step-dot"></div>
+                <h3>Regler & scenarier</h3>
+                <p>Ni bestämmer hur automatiseringen ska agera i olika situationer</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">03</span>
+                <div class="step-dot"></div>
+                <h3>Pilot & driftsättning</h3>
+                <p>Automatiseringen testas i liten skala och sätts sedan i produktion</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">04</span>
+                <div class="step-dot"></div>
+                <h3>Uppföljning & justering</h3>
+                <p>Processen optimeras löpande när behoven förändras</p>
             </div>
         </div>
     </section>
@@ -1785,31 +1904,38 @@
 
         <div class="cases-grid stagger-children">
             <div class="case-card reveal">
-                <div class="case-industry">Transport & Logistik</div>
-                <h3>Autonom trafikledning</h3>
-                <p>AI-agent som tar emot bokningar, optimerar rutter, tilldelar förare och kommunicerar med kunder — helt utan mänsklig inblandning.</p>
-                <span class="case-result">↑ 85% snabbare tilldelning</span>
+                <div class="case-industry">Affärsprocesser</div>
+                <h3>Order- och ärendehantering</h3>
+                <p>AI:n bevakar inkommande order och ärenden, sorterar, prioriterar och vidarebefordrar automatiskt — direkt i era befintliga system.</p>
+                <span class="case-result">Snabbare handläggning</span>
             </div>
 
             <div class="case-card reveal">
-                <div class="case-industry">Försäljning & Growth</div>
-                <h3>AI-driven lead pipeline</h3>
-                <p>Automatisk lead-kvalificering, personaliserad outreach och bokningsflöden som konverterar prospekt till möten dygnet runt.</p>
-                <span class="case-result">↑ 3x fler bokade möten</span>
+                <div class="case-industry">Datakvalitet</div>
+                <h3>Datakorrigering och validering</h3>
+                <p>Identifierar felaktig, saknad eller inkonsekvent data och korrigerar den automatiskt enligt era regler och kravspecifikationer.</p>
+                <span class="case-result">Färre manuella fel</span>
             </div>
 
             <div class="case-card reveal">
-                <div class="case-industry">Kundservice</div>
-                <h3>Intelligent kundhantering</h3>
-                <p>AI som hanterar förfrågningar, eskalerar vid behov och löser ärenden snabbare än era bästa medarbetare.</p>
-                <span class="case-result">↓ 60% ärendetid</span>
+                <div class="case-industry">Kommunikation</div>
+                <h3>Intern kommunikation och notifieringar</h3>
+                <p>Skickar automatiska notifieringar via e-post, Teams eller andra kanaler baserat på händelser och statusändringar i era system.</p>
+                <span class="case-result">Snabbare informationsflöde</span>
             </div>
 
             <div class="case-card reveal">
-                <div class="case-industry">Ekonomi & Administration</div>
-                <h3>Automatiserad back-office</h3>
-                <p>Fakturering, avstämningar och rapportering som sköter sig själv. Kopplat till era befintliga ekonomisystem.</p>
-                <span class="case-result">↓ 90% manuellt arbete</span>
+                <div class="case-industry">ERP, CRM & Affärssystem</div>
+                <h3>Administrativa processer</h3>
+                <p>Automatiserar repetitiva moment i ERP, CRM och andra affärssystem — utan att behöva bygga om eller integrera via API:er.</p>
+                <span class="case-result">Fungerar i befintliga system</span>
+            </div>
+
+            <div class="case-card reveal" style="grid-column: 1 / -1;">
+                <div class="case-industry">Stödfunktioner</div>
+                <h3>Stöd till kundservice, ekonomi och logistik</h3>
+                <p>Avlastar medarbetare i kundservice, ekonomi och logistik genom att hantera rutinuppgifter, sammanställa underlag och säkerställa att inget faller mellan stolarna.</p>
+                <span class="case-result">Mer tid för det som kräver mänskligt omdöme</span>
             </div>
         </div>
     </section>
@@ -1947,6 +2073,41 @@
         </div>
     </section>
 
+    <!-- RESULTATET -->
+    <section id="results" class="results-section" style="position: relative; z-index: 1; padding: 6rem 3rem; background: #0a0a0a; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+        <div class="section-header">
+            <div class="section-tag">Resultatet</div>
+            <h2 class="section-title">Vad ni kan förvänta er</h2>
+        </div>
+        <div class="results-grid stagger-children" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;">
+            <div class="result-item reveal" style="text-align: center; padding: 2rem 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; transition: all 0.3s;">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: center;"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div>
+                <h4 style="font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Mindre manuellt arbete</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">Frigör tid från repetitiva uppgifter</p>
+            </div>
+            <div class="result-item reveal" style="text-align: center; padding: 2rem 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; transition: all 0.3s;">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: center;"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                <h4 style="font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Färre fel</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">Snabbare handläggning med högre precision</p>
+            </div>
+            <div class="result-item reveal" style="text-align: center; padding: 2rem 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; transition: all 0.3s;">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: center;"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+                <h4 style="font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Högre skalbarhet</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">Utan fler resurser</p>
+            </div>
+            <div class="result-item reveal" style="text-align: center; padding: 2rem 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; transition: all 0.3s;">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: center;"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+                <h4 style="font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Befintliga system</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">Fungerar utan ombyggnation</p>
+            </div>
+            <div class="result-item reveal" style="text-align: center; padding: 2rem 1rem; background: var(--glass); border: 1px solid var(--glass-border); border-radius: 16px; transition: all 0.3s;">
+                <div style="margin-bottom: 1rem; display: flex; justify-content: center;"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <h4 style="font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">Dygnet runt</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;">Fungerar som en digital medarbetare</p>
+            </div>
+        </div>
+    </section>
+
     <!-- MANIFESTO -->
     <section class="manifesto">
         <div class="manifesto-bg"></div>
@@ -2044,15 +2205,16 @@
 
                 <div class="footer-links-group">
                     <div class="footer-col">
-                        <h4>Lösningar</h4>
-                        <a href="#features">AI-agenter</a>
-                        <a href="#features">Systemintegration</a>
-                        <a href="#features">Real-Time Intelligence</a>
+                        <h4>Tjänster</h4>
+                        <a href="#how-ai-works">Vår AI</a>
+                        <a href="#how-it-works">Så fungerar det</a>
+                        <a href="#cases">Användningsområden</a>
                     </div>
                     <div class="footer-col">
                         <h4>Företag</h4>
                         <a href="#process">Process</a>
-                        <a href="#cases">Use Cases</a>
+                        <a href="#results">Resultatet</a>
+                        <a href="#about">Om oss</a>
                         <a href="#contact">Kontakt</a>
                     </div>
                     <div class="footer-col">
