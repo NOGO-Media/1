@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOGO Media AB – AI Automation för moderna företag</title>
+
+    <!-- SEO -->
+    <meta name="description" content="NOGO Media bygger autonoma AI-agenter som driver hela företag. Från trafikledning till kundhantering — AI-automation gjord enkel. Baserade i Norrköping, Sverige.">
+    <meta name="keywords" content="AI automation, AI-agenter, artificiell intelligens, automation Sverige, NOGO Media, operationell AI, systemintegration, Norrköping">
+    <meta name="author" content="NOGO Media AB">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nogomedia.se">
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nogomedia.se">
+    <meta property="og:title" content="NOGO Media AB – AI som driver hela företag">
+    <meta property="og:description" content="Autonoma AI-agenter som fattar beslut, utför uppgifter och skalar era operationer — dygnet runt. Boka ett kostnadsfritt strategimöte.">
+    <meta property="og:image" content="https://nogomedia.se/og-image.png">
+    <meta property="og:locale" content="sv_SE">
+    <meta property="og:site_name" content="NOGO Media AB">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NOGO Media AB – AI som driver hela företag">
+    <meta name="twitter:description" content="Autonoma AI-agenter som fattar beslut, utför uppgifter och skalar era operationer — dygnet runt.">
+    <meta name="twitter:image" content="https://nogomedia.se/og-image.png">
+
+    <!-- Favicon (inline SVG as data URI) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2360b4ff'/%3E%3C/svg%3E">
+    <meta name="theme-color" content="#050505">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "NOGO Media AB",
+        "url": "https://nogomedia.se",
+        "logo": "https://nogomedia.se/logo.png",
+        "description": "AI-automation för moderna företag. Vi bygger autonoma AI-agenter som driver hela verksamheter.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Norrköping",
+            "addressCountry": "SE"
+        },
+        "email": "hugo@nogomedia.se",
+        "sameAs": []
+    }
+    </script>
+
+    <!-- Fonts (preconnect + preload for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #050505;
+            --white: #f0f0f0;
+            --accent: #60b4ff;
+            --accent-dim: rgba(96, 180, 255, 0.15);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #050505;
+            background: #050505;
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            background: #050505;
+        }
+
+        /* ── CANVAS BACKGROUND ── */
+        #neural-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(96, 180, 255, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(96, 180, 255, 0); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+
+        .nav-cta {
+            background: var(--accent) !important;
+            color: var(--black) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            font-size: 0.85rem !important;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 0 20px rgba(96, 180, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile menu */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+            position: relative;
+            width: 30px;
+            height: 24px;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: #0a0a0a;
+            border-left: 1px solid var(--glass-border);
+            z-index: 1001;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--glass-border);
+            display: block;
+            transition: color 0.3s, padding-left 0.3s;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mobile-menu.active a:nth-child(1) { transition: all 0.3s ease 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition: all 0.3s ease 0.15s; }
+        .mobile-menu.active a:nth-child(3) { transition: all 0.3s ease 0.2s; }
+        .mobile-menu.active a:nth-child(4) { transition: all 0.3s ease 0.25s; }
+        .mobile-menu.active a:nth-child(5) { transition: all 0.3s ease 0.3s; }
+
+        .mobile-menu a:hover {
+            color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .mobile-menu .mobile-cta {
+            margin-top: auto;
+            background: var(--accent);
+            color: var(--black);
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border-bottom: none;
+        }
+
+        .mobile-menu .mobile-cta:hover {
+            padding-left: 0;
+        }
+
+        .mobile-menu .mobile-contact-info {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: none;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .mobile-menu.active .mobile-contact-info {
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.3s ease 0.3s;
+        }
+
+        .mobile-menu .mobile-contact-info p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+            font-weight: 400;
+        }
+
+        .mobile-menu .mobile-contact-info a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            padding: 0.3rem 0;
+            border-bottom: none;
+            color: var(--accent);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+            background: #050505;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(96, 180, 255, 0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+            color: var(--accent);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .badge-pulse {
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            max-width: 1000px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero h1 .accent-word {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            line-height: 1.7;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--accent);
+            color: var(--black);
+            padding: 1rem 2.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(96, 180, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hero scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .scroll-line {
+            width: 1px; height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-pulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ── METRICS BAR ── */
+        .metrics-bar {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 3rem;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: #0a0a0a;
+        }
+
+        .metrics-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-number {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ── VISION SECTION ── */
+        .vision {
+            position: relative;
+            z-index: 1;
+            padding: 10rem 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision-quote {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .vision-quote .highlight {
+            color: var(--accent);
+        }
+
+        .vision-author {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ── SECTIONS SHARED ── */
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-dim);
+            border: 1px solid rgba(96, 180, 255, 0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── FEATURES ── */
+        .features {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-wrap, .showcase-wrap, .process-wrap, .tech-wrap, .vision-wrap {
+            background: #050505;
+            width: 100%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(96, 180, 255, 0.15);
+            transform: translateY(-6px);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon-wrap {
+            width: 56px; height: 56px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(96, 180, 255, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon-wrap svg, .stack-node-icon svg {
+            width: 26px; height: 26px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .stack-node-icon {
+            width: 44px; height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stack-node-icon svg {
+            width: 30px; height: 30px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0.45rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 6px; height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            opacity: 0.6;
+        }
+
+        /* ── SHOWCASE / BENTO ── */
+        .showcase {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(96, 180, 255, 0.15);
+        }
+
+        .bento-card.large { grid-column: span 8; min-height: 350px; }
+        .bento-card.medium { grid-column: span 4; min-height: 350px; }
+        .bento-card.wide { grid-column: span 6; min-height: 280px; }
+
+        .bento-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .bento-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        /* Animated graph inside bento */
+        .mini-graph {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 60%; height: 50%;
+            opacity: 0.15;
+        }
+
+        .mini-graph svg { width: 100%; height: 100%; }
+
+        /* Floating orb */
+        .bento-orb {
+            position: absolute;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            background: var(--accent);
+        }
+
+        /* ── PROCESS ── */
+        .process {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 8%;
+            right: 8%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), rgba(96, 180, 255, 0.1));
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .step-dot {
+            width: 20px; height: 20px;
+            background: var(--black);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            margin: 25px auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .step-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .process-step h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ── USE CASES ── */
+        .use-cases {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            background: #0a0a0a;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .cases-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .case-card:hover {
+            border-color: rgba(96, 180, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .case-industry {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .case-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .case-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .case-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent-dim);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* ── TECH STACK ── */
+        .tech-stack {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stack-visual {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .stack-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            background: var(--glass);
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+
+        .stack-node:hover {
+            border-color: rgba(96, 180, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .stack-node-icon {
+            font-size: 0;
+        }
+
+        .stack-node-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .stack-node-desc {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            background: #050505;
+        }
+
+        .about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-top: 4rem;
+            align-items: start;
+        }
+
+        .about-story h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+        }
+
+        .about-story p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .about-story .highlight-text {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .about-value {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .about-value:hover {
+            border-color: rgba(96, 180, 255, 0.15);
+        }
+
+        .about-value h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .about-value p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .about-team {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: rgba(96, 180, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .team-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            border: 1px solid rgba(96, 180, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .team-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .team-role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 0.15rem;
+        }
+
+        .team-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .about-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .about-location svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            .about { padding: 5rem 1.5rem; }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── MANIFESTO ── */
+        .manifesto {
+            position: relative;
+            z-index: 1;
+            padding: 10rem 3rem;
+            text-align: center;
+            overflow: hidden;
+            background: #050505;
+        }
+
+        .manifesto-bg {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(96, 180, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .manifesto h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .manifesto p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* ── CTA SECTION ── */
+        .cta-section {
+            position: relative;
+            z-index: 1;
+            padding: 8rem 3rem;
+            text-align: center;
+            background: #050505;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .cta-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-trust {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cta-trust-item::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 3rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            background: #050505;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .footer-links-group {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.6rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 36px; height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ── CONTACT FORM ── */
+        .contact-form {
+            max-width: 540px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(96, 180, 255, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #111;
+            color: var(--white);
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(96, 180, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .form-success-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--accent);
+            fill: none;
+            stroke-width: 2.5;
+        }
+
+        .form-success h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered children */
+        .stagger-children .reveal:nth-child(1) { transition-delay: 0s; }
+        .stagger-children .reveal:nth-child(2) { transition-delay: 0.1s; }
+        .stagger-children .reveal:nth-child(3) { transition-delay: 0.2s; }
+        .stagger-children .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+        /* ── GRAIN OVERLAY ── */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.5;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .bento-card.large, .bento-card.medium, .bento-card.wide { grid-column: span 12; }
+            .cases-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .features, .process, .showcase, .tech-stack { padding: 5rem 1.5rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .process-timeline::before { display: none; }
+            .cta-section { padding: 5rem 1.5rem; }
+            .footer-top { flex-direction: column; }
+            .footer-links-group { gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .vision { padding: 6rem 1.5rem; }
+            .manifesto { padding: 6rem 1.5rem; }
+            .use-cases { padding: 5rem 1.5rem; }
+            .stack-visual { gap: 1rem; }
+            .stack-node { min-width: 110px; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="neural-canvas"></canvas>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">
+            <span class="logo-dot"></span>
+            NOGO
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features">Lösningar</a></li>
+            <li><a href="#showcase">Capabilities</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#cases">Use Cases</a></li>
+            <li><a href="#about">Om oss</a></li>
+            <li><a href="#contact" class="nav-cta">Boka samtal →</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Meny">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features" onclick="closeMobile()">Lösningar</a>
+        <a href="#showcase" onclick="closeMobile()">Capabilities</a>
+        <a href="#process" onclick="closeMobile()">Process</a>
+        <a href="#cases" onclick="closeMobile()">Use Cases</a>
+        <a href="#about" onclick="closeMobile()">Om oss</a>
+        <a href="#contact" class="mobile-cta" onclick="closeMobile()">Boka samtal →</a>
+        <div class="mobile-contact-info">
+            <p>Kontakta oss</p>
+            <a href="mailto:hugo@nogomedia.se">hugo@nogomedia.se</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span class="badge-pulse"></span>
+            Operational AI · Norrköping, Sverige
+        </div>
+        <h1>Vi bygger AI som <span class="accent-word">driver</span> hela företag</h1>
+        <p class="hero-subtitle">
+            Inte chatbots. Inte copilots. Autonoma AI-agenter som fattar beslut, 
+            utför uppgifter och skalar era operationer — dygnet runt.
+        </p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Boka strategimöte</a>
+            <a href="#showcase" class="btn-secondary">Se hur det fungerar ↓</a>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item reveal">
+                <div class="metric-number" data-target="97">0%</div>
+                <div class="metric-label">Automatiseringsgrad</div>
+            </div>
+            <div class="metric-item reveal">
+                <div class="metric-number" data-target="10">0x</div>
+                <div class="metric-label">Snabbare operationer</div>
+            </div>
+            <div class="metric-item reveal">
+                <div class="metric-number" data-target="24" data-suffix="/7">0/7</div>
+                <div class="metric-label">Autonom drift</div>
+            </div>
+            <div class="metric-item reveal">
+                <div class="metric-number" data-target="40">0%</div>
+                <div class="metric-label">Kostnadsreduktion</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISION -->
+    <div class="vision-wrap">
+    <section class="vision reveal">
+        <div class="section-tag">Vår vision</div>
+        <blockquote class="vision-quote">
+            "Framtidens mest framgångsrika företag behöver inte fler anställda — 
+            de behöver <span class="highlight">smartare system</span>. Vi bygger dem."
+        </blockquote>
+        <p class="vision-author">— NOGO Media AB</p>
+    </section>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features-wrap">
+    <section id="features" class="features">
+        <div class="section-header">
+            <div class="section-tag">Lösningar</div>
+            <h2 class="section-title">AI som ersätter roller — inte bara assisterar dem</h2>
+            <p class="section-subtitle">
+                Produktionstunga AI-system som tar över hela arbetsflöden. 
+                Från kundkontakt till logistik, finansanalys till beslutsstöd.
+            </p>
+        </div>
+
+        <div class="features-grid stagger-children">
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 7l1 2h4l1-2c2-1.5 4-4 4-7a7 7 0 0 0-7-7z"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div>
+                <h3>Autonoma AI-agenter</h3>
+                <p>
+                    AI-system som agerar som trafikledare, bokningsassistenter och säljagenter. 
+                    Fattar beslut och utför uppgifter utan manuell inblandning.
+                </p>
+                <ul class="feature-list">
+                    <li>Automatisk uppdragsfördelning</li>
+                    <li>Intelligent trafikledning</li>
+                    <li>Kunddialog & bokning</li>
+                    <li>Självlärande processer</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+                <h3>Systemintegration</h3>
+                <p>
+                    Vi kopplar ihop era befintliga system och skapar ett intelligent lager 
+                    som läser, prioriterar och agerar över plattformsgränser.
+                </p>
+                <ul class="feature-list">
+                    <li>Transport- & logistiksystem</li>
+                    <li>Ekonomi & CRM-integration</li>
+                    <li>Bokningsplattformar</li>
+                    <li>Kommunikationskanaler</li>
+                </ul>
+            </div>
+
+            <div class="feature-card reveal">
+                <div class="feature-icon-wrap"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-9"/></svg></div>
+                <h3>Real-Time Intelligence</h3>
+                <p>
+                    Fatta smartare beslut med live data. Vår AI analyserar och agerar i realtid 
+                    för att optimera era processer kontinuerligt.
+                </p>
+                <ul class="feature-list">
+                    <li>AI-först-webbplatser</li>
+                    <li>Lead-kvalificering</li>
+                    <li>Funnel-optimering</li>
+                    <li>Konverteringsfokus</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- SHOWCASE / BENTO -->
+    <div class="showcase-wrap">    <section id="showcase" class="showcase">
+        <div class="section-header">
+            <div class="section-tag">Capabilities</div>
+            <h2 class="section-title">En ny typ av infrastruktur</h2>
+            <p class="section-subtitle">
+                Vi bygger inte verktyg — vi bygger det operativa nervsystemet 
+                som låter ert företag tänka, agera och skala autonomt.
+            </p>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card large reveal">
+                <div class="bento-orb" style="top: -50px; right: -50px;"></div>
+                <div class="bento-label">→ Kärnteknik</div>
+                <h3>Multi-Agent Orchestration</h3>
+                <p>
+                    Flera AI-agenter som samarbetar i realtid. En agent hanterar kundkontakt, 
+                    en annan optimerar logistik, en tredje analyserar finansdata — alla 
+                    koordinerade genom vårt orkestreringslager.
+                </p>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <span style="background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">LLM-agenter</span>
+                    <span style="background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Tool calling</span>
+                    <span style="background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">RAG</span>
+                    <span style="background: var(--accent-dim); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;">Workflow automation</span>
+                </div>
+            </div>
+
+            <div class="bento-card medium reveal" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div class="bento-label">→ Skalbarhet</div>
+                    <h3>Från 1 till 1000 utan att anställa</h3>
+                    <p style="font-size: 0.9rem;">
+                        Era AI-agenter skalar linjärt. Dubblad arbetsvolym kräver noll nyanställning.
+                    </p>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <div style="font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--accent);">∞</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Skalbar kapacitet</div>
+                </div>
+            </div>
+
+            <div class="bento-card wide reveal">
+                <div class="bento-label">→ Beslutsintelligens</div>
+                <h3>AI som fattar beslut — inte bara föreslår</h3>
+                <p>
+                    Våra agenter agerar inom definierade ramar, men med full autonomi att fatta 
+                    operativa beslut. Human-in-the-loop när det behövs.
+                </p>
+            </div>
+
+            <div class="bento-card wide reveal">
+                <div class="bento-label">→ Kontinuerlig optimering</div>
+                <h3>Lär sig, anpassar sig, förbättras</h3>
+                <p>
+                    Varje interaktion gör systemet smartare. Feedbackloopar och performance-data 
+                    driver ständiga förbättringar utan manuella justeringar.
+                </p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="process-wrap">
+    <section id="process" class="process">
+        <div class="section-header">
+            <div class="section-tag">Process</div>
+            <h2 class="section-title">Från idé till autonom drift</h2>
+            <p class="section-subtitle">
+                En beprövad metod för att implementera AI som faktiskt levererar affärsresultat
+            </p>
+        </div>
+
+        <div class="process-timeline stagger-children">
+            <div class="process-step reveal">
+                <span class="step-num">01</span>
+                <div class="step-dot"></div>
+                <h3>Discovery</h3>
+                <p>Vi kartlägger era processer, flaskhalsar och automatiseringsmöjligheter</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">02</span>
+                <div class="step-dot"></div>
+                <h3>Design</h3>
+                <p>Regler, verktyg, data och godkännandeflöden designas med full transparens</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">03</span>
+                <div class="step-dot"></div>
+                <h3>Bygg & Testa</h3>
+                <p>Vi bygger er AI-agent och validerar mot verkliga scenarier med live data</p>
+            </div>
+
+            <div class="process-step reveal">
+                <span class="step-num">04</span>
+                <div class="step-dot"></div>
+                <h3>Launch & Iterate</h3>
+                <p>Loggning, feedback och iteration — vi optimerar löpande efter deployment</p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- USE CASES -->
+    <section id="cases" class="use-cases">
+        <div class="section-header">
+            <div class="section-tag">Use Cases</div>
+            <h2 class="section-title">Byggd för verkligheten</h2>
+            <p class="section-subtitle">
+                AI-automation som löser riktiga problem i riktiga verksamheter
+            </p>
+        </div>
+
+        <div class="cases-grid stagger-children">
+            <div class="case-card reveal">
+                <div class="case-industry">Transport & Logistik</div>
+                <h3>Autonom trafikledning</h3>
+                <p>AI-agent som tar emot bokningar, optimerar rutter, tilldelar förare och kommunicerar med kunder — helt utan mänsklig inblandning.</p>
+                <span class="case-result">↑ 85% snabbare tilldelning</span>
+            </div>
+
+            <div class="case-card reveal">
+                <div class="case-industry">Försäljning & Growth</div>
+                <h3>AI-driven lead pipeline</h3>
+                <p>Automatisk lead-kvalificering, personaliserad outreach och bokningsflöden som konverterar prospekt till möten dygnet runt.</p>
+                <span class="case-result">↑ 3x fler bokade möten</span>
+            </div>
+
+            <div class="case-card reveal">
+                <div class="case-industry">Kundservice</div>
+                <h3>Intelligent kundhantering</h3>
+                <p>AI som hanterar förfrågningar, eskalerar vid behov och löser ärenden snabbare än era bästa medarbetare.</p>
+                <span class="case-result">↓ 60% ärendetid</span>
+            </div>
+
+            <div class="case-card reveal">
+                <div class="case-industry">Ekonomi & Administration</div>
+                <h3>Automatiserad back-office</h3>
+                <p>Fakturering, avstämningar och rapportering som sköter sig själv. Kopplat till era befintliga ekonomisystem.</p>
+                <span class="case-result">↓ 90% manuellt arbete</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <div class="tech-wrap">
+    <section class="tech-stack">
+        <div class="section-header">
+            <div class="section-tag">Teknik</div>
+            <h2 class="section-title">Byggt med framtidens arkitektur</h2>
+            <p class="section-subtitle">
+                Enterprise-grade AI-infrastruktur anpassad för svenska förhållanden
+            </p>
+        </div>
+
+        <div class="stack-visual">
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4"/><path d="M12 19v4"/><path d="M4.22 4.22l2.83 2.83"/><path d="M16.95 16.95l2.83 2.83"/><path d="M1 12h4"/><path d="M19 12h4"/><path d="M4.22 19.78l2.83-2.83"/><path d="M16.95 7.05l2.83-2.83"/></svg></div>
+                <div class="stack-node-name">LLM Core</div>
+                <div class="stack-node-desc">GPT-4, Claude, Mistral</div>
+            </div>
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4"/><path d="M6.5 10v4"/><path d="M17.5 10v4"/><path d="M10 17.5h4"/></svg></div>
+                <div class="stack-node-name">Agent Framework</div>
+                <div class="stack-node-desc">Multi-agent orchestration</div>
+            </div>
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+                <div class="stack-node-name">API Layer</div>
+                <div class="stack-node-desc">REST, Webhooks, Events</div>
+            </div>
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+                <div class="stack-node-name">Vector DB</div>
+                <div class="stack-node-desc">Embeddings & retrieval</div>
+            </div>
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1.08 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1.08 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 0 1 0 4h-.09c-.658.003-1.25.396-1.51 1z"/></svg></div>
+                <div class="stack-node-name">Workflow Engine</div>
+                <div class="stack-node-desc">n8n, Make, Custom</div>
+            </div>
+            <div class="stack-node reveal">
+                <div class="stack-node-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+                <div class="stack-node-name">Analytics</div>
+                <div class="stack-node-desc">Real-time dashboards</div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+        <div class="about-inner">
+            <div class="section-header">
+                <div class="section-tag">Om oss</div>
+                <h2 class="section-title">Unga. Hungriga. Besatta av AI.</h2>
+                <p class="section-subtitle">
+                    Vi startade NOGO för att vi såg vad ingen annan verkade göra — 
+                    bygga AI som faktiskt tar över arbetet, inte bara pratar om det.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-story reveal">
+                    <h3>Varför NOGO finns</h3>
+                    <p>
+                        Vi växte upp med AI. Medan andra diskuterade om det var framtiden 
+                        började vi bygga med det. NOGO startades i Norrköping med en enkel insikt: 
+                        <span class="highlight-text">de flesta företag slösar tusentals timmar på uppgifter 
+                        som AI redan kan lösa</span>.
+                    </p>
+                    <p>
+                        Vi tror inte att man behöver 20 års erfarenhet för att förstå var världen 
+                        är på väg. Man behöver nyfikenhet, tempo och modet att bygga det som andra 
+                        bara pratar om. Det är NOGO.
+                    </p>
+
+                    <div class="about-values">
+                        <div class="about-value">
+                            <h4>Tempo före perfektion</h4>
+                            <p>Vi testar, itererar och levererar snabbt</p>
+                        </div>
+                        <div class="about-value">
+                            <h4>Resultat före teori</h4>
+                            <p>AI som bevisar sitt värde från dag ett</p>
+                        </div>
+                        <div class="about-value">
+                            <h4>Partnerskap före projekt</h4>
+                            <p>Vi växer tillsammans med våra kunder</p>
+                        </div>
+                        <div class="about-value">
+                            <h4>Framtid före tradition</h4>
+                            <p>Vi bygger för hur det borde fungera</p>
+                        </div>
+                    </div>
+
+                    <div class="about-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Norrköping, Sverige
+                    </div>
+                </div>
+
+                <div class="about-team">
+                    <div class="team-card reveal">
+                        <div class="team-card-header">
+                            <div class="team-avatar">HS</div>
+                            <div>
+                                <div class="team-name">Hugo Svensson</div>
+                                <div class="team-role">Grundare & VD</div>
+                            </div>
+                        </div>
+                        <p>
+                            Driven av en övertygelse om att AI kan omforma hur företag fungerar. 
+                            Hugo leder NOGO:s vision och kundrelationer — med fokus på att leverera 
+                            lösningar som gör verklig skillnad, inte bara tekniska demos.
+                        </p>
+                    </div>
+
+                    <div class="team-card reveal">
+                        <div class="team-card-header">
+                            <div class="team-avatar">WH</div>
+                            <div>
+                                <div class="team-name">Wille Hellström</div>
+                                <div class="team-role">Medgrundare</div>
+                            </div>
+                        </div>
+                        <p>
+                            Med blicken ständigt på nästa möjlighet driver Wille NOGO:s tekniska 
+                            utveckling och affärsstrategi. Pragmatisk problemlösare som ser till 
+                            att idéer blir verklighet.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto">
+        <div class="manifesto-bg"></div>
+        <div class="section-tag">Manifesto</div>
+        <h2 class="reveal">
+            Vi tror inte på AI som ett <span style="color: var(--accent);">verktyg</span>.<br>
+            Vi tror på AI som en <span style="color: var(--accent);">medarbetare</span>.
+        </h2>
+        <p class="reveal">
+            Framtidens företag drivs av system som tänker, agerar och utvecklas. 
+            NOGO bygger den infrastrukturen — så att ni kan fokusera på det som verkligen spelar roll.
+        </p>
+        <a href="#contact" class="btn-primary reveal" style="position: relative;">Bli en del av framtiden</a>
+    </section>
+
+    <!-- CTA / CONTACT -->
+    <section class="cta-section" id="contact">
+        <h2 class="reveal">Redo att bygga ett företag som aldrig sover?</h2>
+        <p class="reveal">
+            Fyll i formuläret så återkommer vi inom 24 timmar med en 
+            konkret plan för hur AI kan driva er verksamhet framåt.
+        </p>
+
+        <div class="contact-form reveal" id="contactForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Namn</label>
+                    <input type="text" id="name" placeholder="Ditt namn" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Företag</label>
+                    <input type="text" id="company" placeholder="Företagsnamn">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">E-post</label>
+                    <input type="email" id="email" placeholder="din@epost.se" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon</label>
+                    <input type="tel" id="phone" placeholder="+46 70 123 45 67">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="interest">Vad är ni mest intresserade av?</label>
+                <select id="interest">
+                    <option value="" disabled selected>Välj ett område</option>
+                    <option value="agents">Autonoma AI-agenter</option>
+                    <option value="integration">Systemintegration</option>
+                    <option value="intelligence">Real-Time Intelligence</option>
+                    <option value="other">Annat / Vet inte ännu</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Beskriv kort er utmaning</label>
+                <textarea id="message" placeholder="Berätta lite om er verksamhet och vad ni vill automatisera..."></textarea>
+            </div>
+
+            <button type="button" class="btn-primary form-submit" onclick="submitForm()">
+                Boka strategimöte →
+            </button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Tack för ert intresse!</h3>
+            <p>Vi återkommer inom 24 timmar till er med en konkret plan.</p>
+        </div>
+
+        <div class="cta-trust reveal">
+            <div class="cta-trust-item">Kostnadsfritt</div>
+            <div class="cta-trust-item">30 min</div>
+            <div class="cta-trust-item">Ingen bindningstid</div>
+            <div class="cta-trust-item">Konkret handlingsplan</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-dot"></span>
+                        NOGO
+                    </div>
+                    <p>AI-automation för moderna företag. Vi bygger autonoma system som driver operationer, dag som natt.</p>
+                </div>
+
+                <div class="footer-links-group">
+                    <div class="footer-col">
+                        <h4>Lösningar</h4>
+                        <a href="#features">AI-agenter</a>
+                        <a href="#features">Systemintegration</a>
+                        <a href="#features">Real-Time Intelligence</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Företag</h4>
+                        <a href="#process">Process</a>
+                        <a href="#cases">Use Cases</a>
+                        <a href="#contact">Kontakt</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Kontakt</h4>
+                        <a href="mailto:hugo@nogomedia.se">hugo@nogomedia.se</a>
+                        <a href="#contact">Boka strategimöte</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 NOGO Media AB. Norrköping, Sverige. Alla rättigheter förbehållna.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── NEURAL NETWORK CANVAS ──
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: -1000, y: -1000 };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        document.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(96, 180, 255, ${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.innerWidth < 768;
+        const particleCount = prefersReducedMotion ? 0 : isMobile ? 30 : Math.min(80, Math.floor(window.innerWidth / 20));
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function drawConnections() {
+            const connectionDist = isMobile ? 100 : 150;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < connectionDist) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(96, 180, 255, ${0.06 * (1 - dist / connectionDist)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+                // Mouse connection (skip on mobile — no hover)
+                if (!isMobile) {
+                    const mdx = particles[i].x - mouse.x;
+                    const mdy = particles[i].y - mouse.y;
+                    const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+                    if (mDist < 200) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(96, 180, 255, ${0.15 * (1 - mDist / 200)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // ── SCROLL REVEAL ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ── NUMBER COUNTER ANIMATION ──
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const suffix = el.dataset.suffix || el.textContent.replace(/[0-9]/g, '');
+                    let current = 0;
+                    const step = target / 60;
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = Math.round(current) + suffix;
+                    }, 16);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.metric-number[data-target]').forEach(el => counterObserver.observe(el));
+
+        // ── SMOOTH NAV HIDE ON SCROLL ──
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            nav.style.transition = 'transform 0.3s ease';
+            lastScroll = currentScroll;
+        });
+        // ── MOBILE MENU ──
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function openMobile() {
+            mobileToggle.classList.add('active');
+            mobileMenu.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobile() {
+            mobileToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileToggle.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMobile();
+            } else {
+                openMobile();
+            }
+        });
+
+        mobileOverlay.addEventListener('click', closeMobile);
+
+        // ── CONTACT FORM ──
+        function submitForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const interest = document.getElementById('interest').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email) {
+                // Highlight empty required fields
+                if (!name) document.getElementById('name').style.borderColor = '#ff4444';
+                if (!email) document.getElementById('email').style.borderColor = '#ff4444';
+                return;
+            }
+
+            // Build mailto body
+            const subject = encodeURIComponent('Strategimöte — ' + (company || name));
+            const body = encodeURIComponent(
+                'Namn: ' + name + '\n' +
+                'Företag: ' + (company || '—') + '\n' +
+                'E-post: ' + email + '\n' +
+                'Telefon: ' + (phone || '—') + '\n' +
+                'Intresseområde: ' + (interest || '—') + '\n\n' +
+                'Meddelande:\n' + (message || '—')
+            );
+
+            // Open mail client
+            window.location.href = 'mailto:hugo@nogomedia.se?subject=' + subject + '&body=' + body;
+
+            // Show success state
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').classList.add('show');
+        }
+
+        // Reset red borders on input
+        document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(el => {
+            el.addEventListener('input', () => {
+                el.style.borderColor = '';
+            });
+        });
+    </script>
+</body>
+</html>
